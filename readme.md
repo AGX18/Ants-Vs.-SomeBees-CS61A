@@ -1,4 +1,5 @@
 # Ants Vs. SomeBees
+
 ## What is it:
 a tower defense game called Ants Vs. SomeBees. 
 As the ant queen, you populate your colony with the bravest ants you can muster.
@@ -8,6 +9,7 @@ and they will be vanquished. Fail to pester the airborne intruders adequately,
 and your queen will succumb to the bees' wrath. This game is inspired by 
 PopCap Games' Plants Vs. Zombies.
 ---
+
 ## How to play:
 The Game
 A game of Ants Vs. SomeBees consists of a series of turns. In each turn, new bees may enter the ant colony. 
@@ -19,4 +21,16 @@ or the entire bee fleet has been vanquished (you win).
 
 ![game_explanation.png](game_explanation.png)
 
+### Playing the game (game modes):
+The game can be run in two modes: as a text-based game or using a graphical user interface (GUI). 
+The game logic is the same in either case, but the GUI enforces a turn time limit that makes playing the game more exciting.
 
+To start a text-based game, run
+```python
+python3 ants_text.py
+```
+
+To start a graphical game, run
+```python
+python3 gui.py
+```
