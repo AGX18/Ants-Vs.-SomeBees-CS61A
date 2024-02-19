@@ -26,7 +26,9 @@ class Place:
         self.entrance = None  # A Place
         # Phase 1: Add an entrance to the exit
         # BEGIN Problem 2
-        "*** YOUR CODE HERE ***"
+        self.entrance = None
+        if exit is not None:
+            exit.entrance = self
         # END Problem 2
 
     def add_insect(self, insect):
@@ -186,7 +188,15 @@ class ThrowerAnt(Ant):
         This method returns None if there is no such Bee (or none in range).
         """
         # BEGIN Problem 3 and 4
-        return random_bee(self.place.bees)  # REPLACE THIS LINE
+        beginning = self.place
+        while beginning is not None:
+            if beginning.is_hive:
+                return None
+            if beginning.bees:
+                return random_bee(beginning.bees)
+            beginning = beginning.entrance
+
+        # return None # this line is actually redundant
         # END Problem 3 and 4
 
     def throw_at(self, target):
