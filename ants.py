@@ -312,6 +312,29 @@ class WallAnt(Ant):
 
 # BEGIN Problem 7
 # The HungryAnt Class
+class HungryAnt(Ant):
+    """A ThrowerAnt that only throws leaves at Bees at least 5 places away."""
+
+    name = 'Hungry'
+    food_cost = 4
+    implemented = True  # Change to True to view in the GUI
+    chewing_turns = 3
+
+    def __init__(self, health=1):
+        super().__init__(health)
+        self.turns_to_chew = 0
+
+    def action(self, gamestate):
+        if self.turns_to_chew == 0:
+            bee = random_bee(self.place.bees)
+            if bee:
+                while bee.health > 0:
+                    bee.reduce_health(bee.health)
+                self.turns_to_chew = self.chewing_turns
+        else:
+            self.turns_to_chew -= 1
+
+
 # END Problem 7
 
 
