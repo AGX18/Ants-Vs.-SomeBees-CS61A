@@ -141,11 +141,11 @@ class Ant(Insect):
                 place.ant.store_ant(self)
             elif self.can_contain(place.ant):  # the ant added is a container ant
                 self.store_ant(place.ant)
-                Insect.add_to(self, place)
                 place.ant = self
             else:
                 assert place.ant is None, 'Two ants in {0}'.format(place)
 
+        Insect.add_to(self, place)
             # END Problem 8b
 
     def remove_from(self, place):
@@ -335,8 +335,7 @@ class HungryAnt(Ant):
         if self.turns_to_chew == 0:
             bee = random_bee(self.place.bees)
             if bee:
-                while bee.health > 0:
-                    bee.reduce_health(bee.health)
+                bee.reduce_health(bee.health)
                 self.turns_to_chew = self.chewing_turns
         else:
             self.turns_to_chew -= 1
@@ -394,12 +393,31 @@ class BodyguardAnt(ContainerAnt):
     food_cost = 4
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 8c
-    implemented = False  # Change to True to view in the GUI
+    implemented = True  # Change to True to view in the GUI
     # END Problem 8c
+    def __init__(self, health=2):
+        super().__init__(health)
 
 
 # BEGIN Problem 9
 # The TankAnt class
+class TankAnt(ContainerAnt):
+    """BodyguardAnt provides protection to other Ants."""
+
+    name = 'Tank'
+    food_cost = 6
+    # OVERRIDE CLASS ATTRIBUTES HERE
+    # BEGIN Problem 8c
+    damage = 1
+    implemented = True  # Change to True to view in the GUI
+    # END Problem 8c
+    def __init__(self, health=2):
+        super().__init__(health)
+
+    def action(self, gamestate):
+        super().action(gamestate)
+        for bee in self.place.bees[:]:
+            bee.reduce_health(self.damage)
 # END Problem 9
 
 
