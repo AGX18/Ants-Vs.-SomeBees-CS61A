@@ -511,25 +511,25 @@ class SlowThrower(ThrowerAnt):
     name = 'Slow'
     food_cost = 6
     # BEGIN Problem 13
-    implemented = False  # Change to True to view in the GUI
+    implemented = True  # Change to True to view in the GUI
 
     # END Problem 13
 
     def throw_at(self, target):
 
         # BEGIN Problem 13
-        if _______________:
-            ____________________ = _____
+        if target is not None:
+            target.slowed_turns = 5  # the bee will be slowed for 5 turns
 
             def slow_action(gamestate):
-                if ____________________:
-                    ____________________ -= _____
-                    if ____________________:
-                        ____________________
+                if target.slowed_turns != 0:
+                    target.slowed_turns -= 1
+                    if gamestate.time % 2 == 0:
+                        Bee.action(target, gamestate)
                 else:
-                    ____________________
+                    Bee.action(target, gamestate)
 
-            ____________________
+            target.action = slow_action
             # END Problem 13
 
 
