@@ -268,7 +268,7 @@ class FireAnt(Ant):
     food_cost = 5
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 5
-    implemented = False  # Change to True to view in the GUI
+    implemented = True  # Change to True to view in the GUI
 
     # END Problem 5
 
@@ -284,7 +284,15 @@ class FireAnt(Ant):
         the additional damage if the fire ant dies.
         """
         # BEGIN Problem 5
-        "*** YOUR CODE HERE ***"
+        total_damage = 0
+        if self.health - amount > 0:
+            total_damage = amount
+        else:
+            total_damage = amount + self.damage
+
+        for bee in self.place.bees[:]:
+            bee.reduce_health(total_damage)
+        super().reduce_health(amount)
         # END Problem 5
 
 
