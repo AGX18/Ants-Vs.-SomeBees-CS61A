@@ -56,7 +56,7 @@ class Insect:
     damage = 0
 
     # ADD CLASS ATTRIBUTES HERE
-
+    is_waterproof = False
     def __init__(self, health, place=None):
         """Create an Insect with a health amount and a starting PLACE."""
         self.health = health
@@ -427,8 +427,11 @@ class Water(Place):
     def add_insect(self, insect):
         """Add an Insect to this place. If the insect is not waterproof, reduce
         its health to 0."""
+        Place.add_insect(self, insect)
         # BEGIN Problem 10
-        "*** YOUR CODE HERE ***"
+        if not insect.is_waterproof:
+            insect.reduce_health(insect.health)
+
         # END Problem 10
 
 
@@ -516,8 +519,8 @@ class Bee(Insect):
 
     name = 'Bee'
     damage = 1
-
     # OVERRIDE CLASS ATTRIBUTES HERE
+    is_waterproof = True   # since it can fly
 
     def sting(self, ant):
         """Attack an ANT, reducing its health by 1."""
