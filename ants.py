@@ -189,7 +189,6 @@ class ThrowerAnt(Ant):
     def __init__(self, health=1):
         super().__init__(health)
 
-
     def nearest_bee(self):
         """Return the nearest Bee in a Place that is not the HIVE, connected to
         the ThrowerAnt's Place by following entrances.
@@ -298,6 +297,17 @@ class FireAnt(Ant):
 
 # BEGIN Problem 6
 # The WallAnt class
+class WallAnt(Ant):
+    """A ThrowerAnt that only throws leaves at Bees at least 5 places away."""
+
+    name = 'Wall'
+    food_cost = 4
+    implemented = True  # Change to True to view in the GUI
+
+    def __init__(self, health=4):
+        super().__init__(health)
+
+
 # END Problem 6
 
 # BEGIN Problem 7
